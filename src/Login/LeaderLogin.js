@@ -21,7 +21,7 @@ const LeaderLogin = () => {
     }
 
     axios
-      .post("http://localhost:8005/leaderlogin", {
+      .post("https://teamdrafter.herokuapp.com/leaderlogin", {
         leader_name: nameRef.current.value,
         leader_pw: pwRef.current.value,
       })
@@ -41,58 +41,58 @@ const LeaderLogin = () => {
 
   return (
     <>
-    <form>
-      <table align="center" border="1">
-        <tbody align="center">
-          <tr>
-            <td colSpan={2}>팀장 로그인</td>
-          </tr>
-          <tr>
-            <td>
-              이름입력
-            </td>
-            <td>
-              <input
-                type="text"
-                name="leadername"
-                size="20"
-                ref={nameRef}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              비밀번호
-            </td>
-            <td>
-              <input
-                type="text"
-                name="pw"
-                size="20"
-                ref={pwRef}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <input
-                type="button"
-                value="로그인"
-                onClick={handleLogin}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <Link to="/leaderjoin">팀장 등록</Link>
-            </td>
-            <td>
-              <Link to="/memberlogin">팀원 로그인</Link>
-            </td>  
-          </tr>
-        </tbody>
-      </table>
-    </form>
+      <form>
+        <table align="center" border="1">
+          <tbody align="center">
+            <tr>
+              <td colSpan={2}>팀장 로그인</td>
+            </tr>
+            <tr>
+              <td>
+                이름입력
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="leadername"
+                  size="20"
+                  ref={nameRef}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                비밀번호
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="pw"
+                  size="20"
+                  ref={pwRef}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                <input
+                  type="button"
+                  value="로그인"
+                  onClick={handleLogin}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link to="/leaderjoin">팀장 등록</Link>
+              </td>
+              <td>
+                <Link to="/memberlogin">팀원 로그인</Link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
     </>
   );
 };

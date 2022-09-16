@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const MemberJoin = () => {
-  const nameRef = useRef(); 
-  const pwRef = useRef(); 
-  const pwchRef = useRef(); 
-  const hopeRef = useRef(); 
+  const nameRef = useRef();
+  const pwRef = useRef();
+  const pwchRef = useRef();
+  const hopeRef = useRef();
   const classRef = useRef();
 
   const navigate = useNavigate();
@@ -39,15 +39,15 @@ const MemberJoin = () => {
     }
 
     axios
-      .post("http://localhost:8005/memberjoin", {
-        member_name: nameRef.current.value, 
-        member_pw: pwRef.current.value, 
-        member_hope: hopeRef.current.value, 
+      .post("https://teamdrafter.herokuapp.com/memberjoin", {
+        member_name: nameRef.current.value,
+        member_pw: pwRef.current.value,
+        member_hope: hopeRef.current.value,
         member_class: classRef.current.value,
       })
       .then((res) => {
         if (res.data.affectedRows === 1);
-        else alert("회원가입 실패!!!");
+        else alert("아이디가 중복됩니다.");
         navigate("/memberlogin");
       })
       .catch((e) => {
@@ -58,93 +58,93 @@ const MemberJoin = () => {
 
   return (
     <>
-    <form>
-      <table align="center" border="1">
-        <tbody align="center">
-          <tr>
-            <td colSpan={2}>팀원 등록</td>
-          </tr>
-          <tr> 
-            <td>
-              이름 입력
-            </td>
-            <td>
-              <input
-                type="text"
-                name="name"
-                ref={nameRef}
-                placeholder="이름를 입력하세요"
-                defaultValue=""
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              비밀번호 입력
-            </td>
-            <td>
-              <input
-                type="text"
-                name="pw"
-                ref={pwRef}
-                placeholder="비밀번호를 입력하세요"
-                defaultValue=""
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              비밀번호 확인
-            </td>
-            <td>
-              <input
-                type="text"
-                name="pwch"
-                ref={pwchRef}
-                placeholder="비밀번호 확인"
-                defaultValue=""
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              희망 팀장의 등급
-            </td>
-            <td>
-              <select ref={hopeRef}>
-                <option value="">희망 팀장 등급 선택</option>
-                <option value="a">A</option>
-                <option value="b">B</option>
-                <option value="c">C</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              반 선택
-            </td>
-            <td>
-              <select ref={classRef}>
-                <option value="">반을 선택하세요</option>
-                <option value="JSA">JS_A</option>
-                <option value="JSB">JS_B</option>
-                <option value="PythonA">Python_A</option>
-                <option value="PythonB">Python_B</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-            <input
-                type="button"
-                value="회원등록"
-                onClick={handleMember}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+      <form>
+        <table align="center" border="1">
+          <tbody align="center">
+            <tr>
+              <td colSpan={2}>팀원 등록</td>
+            </tr>
+            <tr>
+              <td>
+                이름 입력
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="name"
+                  ref={nameRef}
+                  placeholder="이름를 입력하세요"
+                  defaultValue=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                비밀번호 입력
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="pw"
+                  ref={pwRef}
+                  placeholder="비밀번호를 입력하세요"
+                  defaultValue=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                비밀번호 확인
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="pwch"
+                  ref={pwchRef}
+                  placeholder="비밀번호 확인"
+                  defaultValue=""
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                희망 팀장의 등급
+              </td>
+              <td>
+                <select ref={hopeRef}>
+                  <option value="">희망 팀장 등급 선택</option>
+                  <option value="a">A</option>
+                  <option value="b">B</option>
+                  <option value="c">C</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                반 선택
+              </td>
+              <td>
+                <select ref={classRef}>
+                  <option value="">반을 선택하세요</option>
+                  <option value="JSA">JS_A</option>
+                  <option value="JSB">JS_B</option>
+                  <option value="PythonA">Python_A</option>
+                  <option value="PythonB">Python_B</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                <input
+                  type="button"
+                  value="회원등록"
+                  onClick={handleMember}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
     </>
   );
 };
