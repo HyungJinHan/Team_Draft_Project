@@ -1,0 +1,28 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.mainvideo{
+    /* width: 100%; */
+    overflow: hidden;
+    margin: 0px auto;
+    position: relative;
+    /* background-size: contain; */
+    height: 100vh;
+}
+video {
+    width: 100%;
+  }
+.maintext{
+    position: absolute;
+    width: 100%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.maintext a {
+    font-size: 30px;
+    color: #ffffff;
+    text-decoration-line: none;
+  }
