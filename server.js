@@ -35,7 +35,7 @@ app.post("/leaderlogin", (req, res) => {
   var leader_pw = req.body.leader_pw;
 
   const sqlQuery =
-    "select leader_name, leader_pw, count(*) as 'cnt' from leader_tbl where leader_name=? and leader_pw=?;";
+    "select leader_name, leader_pw, count(*) as 'cnt' from leader_tbl where leader_name = ? and leader_pw = ?;";
   db.query(sqlQuery, [leader_name, leader_pw], (err, result) => {
     res.send(result);
   });
