@@ -3,7 +3,9 @@ import './Chat.css';
 import io from 'socket.io-client';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const socket = io.connect('https://teamdrafter.herokuapp.com')
+const socket = io.connect('https://teamdrafter.herokuapp.com', {
+  transports: ['websocket']
+})
 
 const Chat = (
   classKey
