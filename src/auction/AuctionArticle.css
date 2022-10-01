@@ -1,0 +1,20 @@
+.auctionArticleBody {
+    display: flex;
+    justify-content: space-between;
+}
+
+.auctionArticlItem {
+    background-color: rgba(255, 255, 255, 0.226);
+    margin: 15px;
+    width: 33%;
+}
+
+/* .chatArticlItem {
+    background-color: rgba(255, 255, 255, 0.226);
+    margin: 0 auto;
+    width: 30%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: block;
+    position: relative;
+} */

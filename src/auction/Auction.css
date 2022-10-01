@@ -1,0 +1,10 @@
+.AuctionBody{
+    display: flex;
+    justify-content: space-between;
+}
+.AuctionItem{
+    background-color: rgba(255, 255, 255, 0.226);
+    margin: 15px;
+    width: 33%;
+    text-decoration: none;
+}

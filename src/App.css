@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'HBIOS-SYS';
+}
+
+*::selection {
+    background-color: purple;
+}
+
+.appBody {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.mainVideo {
+    overflow: hidden;
+    margin: 0px auto;
+    position: relative;
+    height: 100vh;
+}
+
+video {
+    width: 100%;
+}

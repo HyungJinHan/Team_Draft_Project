@@ -1,51 +1,36 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Main.css";
-import background from "./videos/mainvideo.mp4";
+import useStore from "../store/Store";
 
 const Main = () => {
-
+  const { LEADER_COIN } = useStore();
   const navigate = useNavigate();
-
-  const userName = window.sessionStorage.getItem("name");
 
   const handleLogout = () => {
     window.sessionStorage.clear();
     navigate("/");
   };
 
-  if (userName === null) {
-    return (
-      <div className="mainbody">
-        <div className="mainvideo">
-          <video loop autoPlay muted>
-            <source src={background} type="video/mp4" />
-          </video>
-          <div className="maintext">
-            <a href="https://teamdrafter.herokuapp.com/leaderlogin">로그인</a>
-          </div>
-        </div>
+  useEffect(() => {
+    const login_id = window.sessionStorage.getItem("name");
+    if (login_id === null) {
+      alert('로그인이 필요한 서비스입니다.')
+      navigate("/");
+    }
+  }, []);
+
+  return (
+    <div className="main_body">
+      <div className="maintext">
+        <h1 className="mainTitle">DRAFTER</h1>
+        <a href="https://teamdrafter.herokuapp.com/auction">START</a>
+        <br />
+        <br />
+        <input type="button" onClick={handleLogout} value="로그아웃" />
       </div>
-    )
-  }
-  else if (userName !== null) {
-    return (
-      <div className="mainbody">
-        <div className="mainvideo">
-          <video loop autoPlay muted>
-            <source src={background} type="video/mp4" />
-          </video>
-          <div className="maintext">
-            <a href="https://teamdrafter.herokuapp.com/auction">경매</a>
-            <br />
-            <br />
-            <input type="button" onClick={handleLogout} value="로그아웃" />
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+    </div>
+  );
+};
 
 export default Main;
-

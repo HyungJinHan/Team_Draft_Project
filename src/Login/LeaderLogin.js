@@ -1,12 +1,16 @@
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
 
 const LeaderLogin = () => {
   const nameRef = useRef();
   const pwRef = useRef();
 
   const navigate = useNavigate();
+
+  const goMemberjoin = () => { navigate('/memberlogin') }
+  const goLeaderJoin = () => { navigate('/leaderjoin') }
 
   const handleLogin = () => {
     if (nameRef.current.value === "" || nameRef.current.value === undefined) {
@@ -22,16 +26,16 @@ const LeaderLogin = () => {
 
     axios
       .post("https://teamdrafter.herokuapp.com/leaderlogin", {
-        leader_name: nameRef.current.value,
-        leader_pw: pwRef.current.value,
+        LEADER_NAME: nameRef.current.value,
+        LEADER_PW: pwRef.current.value,
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
           window.sessionStorage.setItem("name", nameRef.current.value);
-          navigate("/");
+          navigate("/main");
         } else {
           alert("로그인 실패");
-          navigate("/leaderlogin");
+          navigate("/");
         }
       })
       .catch((e) => {
@@ -40,60 +44,67 @@ const LeaderLogin = () => {
   };
 
   return (
-    <>
-      <form>
-        <table align="center" border="1">
-          <tbody align="center">
-            <tr>
-              <td colSpan={2}>팀장 로그인</td>
-            </tr>
-            <tr>
-              <td>
-                이름입력
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="leadername"
-                  size="20"
-                  ref={nameRef}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                비밀번호
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="pw"
-                  size="20"
-                  ref={pwRef}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <input
-                  type="button"
-                  value="로그인"
-                  onClick={handleLogin}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/leaderjoin">팀장 등록</Link>
-              </td>
-              <td>
-                <Link to="/memberlogin">팀원 로그인</Link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </>
+    <div className="leaderLogin">
+      <div className="input_body">
+        <h1>팀장 로그인</h1>
+        <div className="inputBox">
+          <input
+            type="text"
+            name="leadername"
+            required="required"
+            ref={nameRef}
+            autoComplete="off"
+            onKeyPress={
+              (e) => {
+                if (e.key === 'Enter') {
+                  handleLogin();
+                }
+              }
+            }
+          />
+          <span>ID input</span>
+          <i></i>
+        </div>
+        <div className="inputBox">
+          <input
+            type="password"
+            name="pw"
+            required="required"
+            ref={pwRef}
+            autoComplete="off"
+            onKeyPress={
+              (e) => {
+                if (e.key === 'Enter') {
+                  handleLogin();
+                }
+              }
+            }
+          />
+          <span>PW input</span>
+          <i></i>
+        </div>
+        <input
+          className="loginbtn"
+          type="button"
+          value="로그인"
+          onClick={handleLogin}
+          onKeyPress={
+            (e) => {
+              if (e.key === 'Enter') {
+                handleLogin();
+              }
+            }
+          }
+        />
+        <button
+          className="loginbtn"
+          onClick={goMemberjoin}>팀원 로그인</button>
+        <button
+          className="loginbtn"
+          onClick={goLeaderJoin}>팀장 등록</button>
+      </div>
+    </div>
   );
 };
+
 export default LeaderLogin;
