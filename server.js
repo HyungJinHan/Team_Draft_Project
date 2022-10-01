@@ -1,27 +1,24 @@
 const express = require("express");
+const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const http = require("http");
-const { Server } = require("socket.io");
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 require("dotenv").config();
-
-const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-const server = http.createServer(app);
-
-const io = new Server(server, {
-  cors: {
-    origin: "https://teamdrafter.herokuapp.com", // + heroku url
-    methods: ["GET", "POST"],
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: "https://teamdrafter.herokuapp.com", // + heroku url
+//     methods: ["GET", "POST"],
+//   },
+// });
 
 io.on("connection", (socket) => {
   console.log(`User Connected : ${socket.id}`);
