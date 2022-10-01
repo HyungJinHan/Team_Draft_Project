@@ -1,24 +1,27 @@
 const express = require("express");
-const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const http = require("http");
+const { Server } = require("socket.io");
 require("dotenv").config();
+
+const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// const io = new Server(server, {
-//   cors: {
-//     origin: "https://teamdrafter.herokuapp.com", // + heroku url
-//     methods: ["GET", "POST"],
-//   },
-// });
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "https://teamdrafter.herokuapp.com", // + heroku url
+    methods: ["GET", "POST"],
+  },
+});
 
 io.on("connection", (socket) => {
   console.log(`User Connected : ${socket.id}`);
@@ -223,9 +226,9 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-// server.listen(3001, () => {
-//   console.log("Server Running");
-// });
+server.listen(process.env.PORT || 3000, () => {
+  console.log("Socket Server Running");
+});
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("App is listening on port " + listener);
