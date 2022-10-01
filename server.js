@@ -226,9 +226,9 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-http.listen(server, () => {
-  console.log("Server Running");
-});
+// server.listen(3001, () => {
+//   console.log("Server Running");
+// });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("App is listening on port " + listener);
