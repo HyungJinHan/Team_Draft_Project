@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const http = require("http");
-const { Server } = require("socket.io");
+const Server = require("socket.io");
 require("dotenv").config();
 
 app.use(express.json());
@@ -15,12 +15,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "https://teamdrafter.herokuapp.com", // + heroku url
-    methods: ["GET", "POST"],
-  },
-});
+const io = Server(server);
 
 io.on("connection", (socket) => {
   console.log(`User Connected : ${socket.id}`);
@@ -225,7 +220,7 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 5000, () => {
   console.log("Server Running");
 });
 
