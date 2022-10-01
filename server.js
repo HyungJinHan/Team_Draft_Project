@@ -225,10 +225,10 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-server.listen(process.env.PORT || 3000, () => {
-  console.log("Server Running" + process.env.PORT || 3000);
+server.listen(3001, () => {
+  console.log("Server Running");
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("App is listening on port " + process.env.PORT || 3000);
+const listener = app.listen(process.env.PORT || 3000, () => {
+  console.log("App is listening on port " + listener);
 });
