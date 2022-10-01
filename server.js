@@ -5,9 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const http = require("http");
-const server = http.createServer(app);
-const io = require('socket.io')(server);
-const port = process.env.PORT || 3000;
+const { Server } = require("socket.io");
 require("dotenv").config();
 
 app.use(express.json());
@@ -15,6 +13,14 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "https://teamdrafter.herokuapp.com", // + heroku url
+    methods: ["GET", "POST"],
+  },
+});
 
 io.on("connection", (socket) => {
   console.log(`User Connected : ${socket.id}`);
@@ -219,10 +225,10 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-server.listen(port, () => {
-  console.log("Socket Server Running" + port);
+server.listen(process.env.PORT || 3000, () => {
+  console.log("Server Running" + process.env.PORT || 3000);
 });
 
-app.listen(port, () => {
-  console.log("App is listening on port " + port);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("App is listening on port " + process.env.PORT || 3000);
 });
