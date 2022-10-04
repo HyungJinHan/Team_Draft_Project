@@ -17,7 +17,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://teamdrafter.herokuapp.com:5000", // + heroku url
+    origin: "https://teamdrafter.herokuapp.com", // + heroku url
     methods: ["GET", "POST"],
   },
 });
@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
 
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log(`User With ID : ${socket.id} joined room : ${data}`)
+    console.log(`User With ID : ${socket.id} joined room : ${data}`);
   });
 
   // socket.on('in user notice', (data) => {
@@ -37,11 +37,11 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     console.log(data);
-    socket.to(data.room).emit('receive_message', data);
-  })
+    socket.to(data.room).emit("receive_message", data);
+  });
 
-  socket.on('disconnect', () => {
-    console.log('User Disconnected', socket.id);
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
   });
 });
 
@@ -225,7 +225,7 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-server.listen(process.env.SOCKET_PORT || 5000, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log("Server Running");
 });
 
