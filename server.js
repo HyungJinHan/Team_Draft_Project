@@ -17,7 +17,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://teamdrafter.herokuapp.com", // + heroku url
+    origin: "https://teamdrafter.herokuapp.com:5000", // + heroku url
     methods: ["GET", "POST"],
   },
 });
@@ -225,7 +225,7 @@ app.post("/leadercategory", (req, res) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(process.env.SOCKET_PORT || 5000, () => {
   console.log("Server Running");
 });
 
