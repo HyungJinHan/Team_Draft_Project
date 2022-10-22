@@ -1,5 +1,6 @@
 # Team Drafter Web
-[제작 사이트 (진행 중)](https://teamdrafter.herokuapp.com/)
+[Team Draft Site(진행 중)](https://teamdrafter.herokuapp.com/)
+<br><br>
 경매 시스템 + 드래프트 시스템을 차용하여 만드는 팀원 차출 프로그램 제작 사이드 프로젝트
 <br><br>
 `React`, `Node.js`, `Mysql`을 통한 프로젝트 제작
